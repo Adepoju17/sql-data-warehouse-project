@@ -39,10 +39,15 @@ For more details, refer to [docs/requirements.md](docs/requirements.md).
 
 ---
 
-## 🛡️ License
+## 🔐 Security and Privacy
+All data in this project is synthetic and does not contain any real Protected Health Information (PHI)
 
-This project is licensed under the [MIT License](LICENSE). You are free to use, modify, and share this project with proper attribution.
+---
 
-## 🌟 About Me
+## 🛡️ License 
+This Project is licensed under the [MIT_License](LICENSE). You are free to use, modify, and share this project with proper attribution.
 
-Hi there! I'm **Adepoju Oluwadunsin Gnemga**. I’m a Data Analyst 
+---
+
+## 🧑‍💻 About me
+Hi there! I'm **Adepoju Oluwadunsin Gbenga**. I'm a professional data analyst, well skilled in SQL, Microsoft Excel, Power BI, and Python. I'm passionate about my job and always readt to deliver the best.
