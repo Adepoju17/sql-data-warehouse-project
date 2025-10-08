@@ -65,7 +65,7 @@ BEGIN
 			 SELECT 
 				*,
 				ROW_NUMBER() OVER (PARTITION BY cst_id ORDER BY cst_create_date DESC) AS flag_last
-			FROM silver.crm_cust_info
+			FROM bronze.crm_cust_info
 			WHERE cst_id IS NOT NULL
 		)t
 		WHERE flag_last = 1;
@@ -105,7 +105,7 @@ BEGIN
 			CAST(
 				LEAD(prd_start_dt) OVER(PARTITION BY prd_key ORDER BY prd_start_dt) - 1  AS DATE) 
 				AS prd_end_dt
-		FROM silver.crm_prd_info;
+		FROM bronze.crm_prd_info;
 		SET @end_time = GETDATE();
 		PRINT '>> Load Duration:' +  CAST(DATEDIFF(second, @start_time, @end_time) AS NVARCHAR) + ' seconds';
 		PRINT '--------------------------------------------------------------';
@@ -153,7 +153,7 @@ BEGIN
 					THEN sls_sales / NULLIF(sls_quantity, 0)
 					ELSE sls_price
 				END AS sls_price
-		FROM silver.crm_sales_details;
+		FROM bronze.crm_sales_details;
 		SET @end_time = GETDATE();
 		PRINT '>> Load Duration:' +  CAST(DATEDIFF(second, @start_time, @end_time) AS NVARCHAR) + ' seconds';
 		PRINT '--------------------------------------------------------------';
@@ -186,7 +186,7 @@ BEGIN
 				WHEN UPPER(TRIM(gen)) IN ('M', 'MALE') THEN 'Male'
 				ELSE 'n/a'
 			END AS gen
-		FROM silver.erp_cust_az12;
+		FROM bronze.erp_cust_az12;
 		SET @end_time = GETDATE();
 		PRINT '>> Load Duration:' +  CAST(DATEDIFF(second, @start_time, @end_time) AS NVARCHAR) + ' seconds';
 		PRINT '--------------------------------------------------------------';
@@ -208,7 +208,7 @@ BEGIN
 				WHEN TRIM(cntry) = '' OR cntry IS NULL THEN 'n/a'
 				ELSE TRIM(cntry)
 			END AS cntry
-		FROM silver.erp_loc_a101;
+		FROM bronze.erp_loc_a101;
 		SET @end_time = GETDATE();
 		PRINT '>> Load Duration:' +  CAST(DATEDIFF(second, @start_time, @end_time) AS NVARCHAR) + ' seconds';
 		PRINT '--------------------------------------------------------------';
@@ -225,7 +225,7 @@ BEGIN
 		cat,
 		subcat,
 		maintenance
-		FROM silver.erp_px_cat_g1v2
+		FROM bronze.erp_px_cat_g1v2
 		SET @end_time = GETDATE();
 		PRINT '>> Load Duration:' +  CAST(DATEDIFF(second, @start_time, @end_time) AS NVARCHAR) + ' seconds';
 		PRINT '--------------------------------------------------------------';
